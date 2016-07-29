@@ -14,4 +14,13 @@ RUN mkdir /tmp/erlang-build && \
   rm -rf /tmp/erlang-build && \
   apt-get clean
 
+# Install rebar3
+RUN git clone https://github.com/rebar/rebar3/ /tmp/rebar3 && \
+  cd /tmp/rebar3                                                   && \
+  ./bootstrap                                                      && \
+  chmod a+x ./rebar3                                               && \
+  mv ./rebar3 /usr/bin/                                            && \
+  cd /                                                             && \
+  rm -rf /tmp/rebar3
+
 CMD ["erl"]
